@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("SportsStoreProducts")));
 
 builder.Services.AddTransient<IProductRepository, EFProductRepository>();
 builder.Services.AddMvc();
@@ -21,5 +21,7 @@ app.UseRouting();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Product}/{action=List}/{id?}");
+
+SeedData.EnsurePopulated(app);
 
 app.Run();
