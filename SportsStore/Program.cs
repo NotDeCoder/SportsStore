@@ -1,6 +1,16 @@
+using SportsStore.Models;
 var builder = WebApplication.CreateBuilder(args);
-var app = builder.Build();
+builder.Services.AddMvc();
+builder.Services.AddTransient<IProductRepository, FakeProductRepository>();
 
-app.MapGet("/", () => "Hello World!");
+var app = builder.Build();
+app.UseDeveloperExceptionPage();
+app.UseStatusCodePages();
+app.UseStaticFiles();
+app.UseRouting();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Product}/{action=List}/{id?}");
 
 app.Run();
