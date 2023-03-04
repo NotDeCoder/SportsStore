@@ -22,6 +22,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Product}/{action=List}/{id?}");
 
+app.MapControllerRoute(
+    name: "pagination",
+    pattern: "Products/Page{productPage}",
+    defaults: new { Controller = "Product", action = "List" });
+
 SeedData.EnsurePopulated(app);
 
 app.Run();
