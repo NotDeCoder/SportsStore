@@ -14,11 +14,15 @@ builder.Services.AddMvc();
 builder.WebHost.UseDefaultServiceProvider(options =>
     options.ValidateScopes = false);
 
+builder.Services.AddMemoryCache();
+builder.Services.AddSession();
+
 var app = builder.Build();
 app.UseDeveloperExceptionPage();
 app.UseStatusCodePages();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseSession();
 
 app.MapControllerRoute(
     name: null,
