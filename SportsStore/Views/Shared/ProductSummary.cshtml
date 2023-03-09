@@ -1,0 +1,13 @@
+﻿@model Product
+
+<div class="card m-1 p-1">
+    <div class="bg-gradient p-1">
+        <h4>
+            @Model.Name
+            <span style="float:right">
+                <small>@Model.Price $</small>
+            </span>
+        </h4>
+    </div>
+    <div class="card-text p-1">@Model.Description</div>
+</div>

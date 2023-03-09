@@ -1,17 +1,7 @@
 ﻿@model ProductsListViewModel
 @foreach (var product in Model.Products)
 {
-    <div class="card card-outline-primary m-1 р-1">
-        <div class="bg-faded р-1">
-            <h4>
-                @product.Name
-                <span style="float:right">
-                    <small>@product.Price.ToString("c")</small>
-                </span>
-            </h4>
-        </div>
-        <div class="card-text р-1">@product.Description</div>
-    </div>
+    @Html.Partial("ProductSummary", product)
 }
 <div page-model="@Model.PagingInfo" page-action="List" page-classes-enabled="true" 
     page-class="btn" page-class-normal="btn-secondary" 
