@@ -50,9 +50,9 @@ namespace SportsStore.Tests
 
             helper.Process(ctx, output);
 
-            Assert.Equal(@"<a href=""Test/Page1"">1</a>)"
-                + @"<a href=""Test/Page2"">2</a>)"
-                + @"<a href=""Test/Page3"">3</a>)",
+            Assert.Equal(@"<a href=""Test/Page1"">1</a>"
+                + @"<a href=""Test/Page2"">2</a>"
+                + @"<a href=""Test/Page3"">3</a>",
                 output.Content.GetContent());
         }
     }

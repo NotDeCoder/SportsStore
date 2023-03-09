@@ -1,5 +1,7 @@
 using SportsStore.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing.Template;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,13 +21,33 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Product}/{action=List}/{id?}");
+    name: null,
+    pattern: "{category}/Page{productPage:int}",
+    defaults: new {controller = "Product", action = "List" }
+    );
 
 app.MapControllerRoute(
-    name: "pagination",
-    pattern: "Products/Page{productPage}",
-    defaults: new { Controller = "Product", action = "List" });
+    name: null,
+    pattern: "Page{productPage:int}",
+    defaults: new { controller = "Product", action = "List", productPage = 1 }
+    );
+
+app.MapControllerRoute(
+    name: null,
+    pattern: "{category}",
+    defaults: new { controller = "Product", action = "List", productPage = 1 }
+    );
+
+app.MapControllerRoute(
+    name: null,
+    pattern: "",
+    defaults: new { controller = "Product", action = "List", productPage = 1 }
+    );
+
+app.MapControllerRoute(
+    name: null,
+    pattern: "{controller}/{action}/{id?}"
+    );
 
 SeedData.EnsurePopulated(app);
 
