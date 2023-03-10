@@ -9,6 +9,8 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SportsStoreProducts")));
 
 builder.Services.AddTransient<IProductRepository, EFProductRepository>();
+builder.Services.AddScoped<Cart>(sp => SessionCart.GetCart(sp));
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddMvc();
 
 builder.WebHost.UseDefaultServiceProvider(options =>
